@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jquery Content Slider</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+
+<script>
+
+$(document).ready(function(){
+
+//set options
+
+var speed=500;             // fade speed
+var autoswitch=true;      //auto slider options
+var autoswitchspeed=4000; //auto slider speed
+
+ 
+//Add initial active class
+
+$('.slide').first().addClass('active');
+
+//hide all slides
+$('.slide').hide();
+
+//show first slide
+
+$('.active').show();
+
+//next handler
+
+$('#next').on('click',nextSlide);
+
+
+$('#Prev').on('click',previousSlide);
+
+
+if(autoswitch==true)
+{
+setInterval(nextSlide,autoswitchspeed);
+
+}
+
+
+
+//switch function to next slide
+
+function nextSlide()
+{
+
+
+$('.active').removeClass('active').addClass('oldActive');
+
+if($('.oldActive').is(':last-child'))
+{
+
+$('.slide').first().addClass('active');
+}
+else
+{
+$('.oldActive').next().addClass('active');
+}
+$('.oldActive').removeClass('oldActive');
+$('.slide').fadeOut(speed);
+$('.active').fadeIn(speed);
+}
+
+
+//switch function to previous slide
+
+function previousSlide()
+{
+$('.active').removeClass('active').addClass('oldActive');
+
+if($('.oldActive').is(':first-child'))
+{
+
+$('.slide').last().addClass('active');
+}
+else
+{
+$('.oldActive').prev().addClass('active');
+}
+$('.oldActive').removeClass('oldActive');
+$('.slide').fadeOut(speed);
+$('.active').fadeIn(speed);
+
+}
+
+});
+
+
+
+</script>
+
+
+<style>
+
+*{
+
+margin:0;
+padding:0;
+}
+
+body
+{
+
+font-family:'Arial',sans-serif;
+font-size:14px;
+color:#fff;
+background:#333;
+line-height:1.6em;
+}
+
+a{
+
+color:#fff;
+text-decoration:none;
+}
+
+h1
+{
+text-align:center;
+margin-bottom:20px;
+}
+
+#container
+{
+width:1280px;
+margin:20px auto;
+overflow:hidden;
+}
+
+
+#slider
+{
+width:1200px;
+height:444px;
+position:relative;
+overflow:hidden;
+float:left;
+padding:3px;
+border:#666 solid 2px;
+border-radius:5px;
+
+
+}
+
+#slider img
+{
+
+width:1200px;
+height:444px;
+}
+#Prev ,#next
+{
+float:left;
+marging-top:130px;
+cursor:pointer;
+position:relative;
+z-index:100;
+width:60px;
+}
+
+.slide
+{
+
+position:absolute;
+}
+
+.slide-copy
+{
+position:absolute;
+bottom:0;
+left:0;
+padding:20px;
+background:#7f7f7f;
+background:rgba(0,0,0,0.8);
+
+}
+
+
+#Prev
+{
+margin-right: -45px;
+margin-top:180px;
+
+
+}
+
+
+#next
+{
+margin-left: -45px;
+margin-top:180px;
+
+}
+
+
+
+
+
+
+
+</style>
+
+<script>
+$(document).ready(function(){
+
+
+
+});
+
+</script>
+
+
+</head>
+
+<body>
+<div id="container">
+<header>
+<h1>Jquery Content Slider</h1>
+</header>
+<img src="arrow-left.png" alt="Prev" id="Prev">
+<div id="slider">
+
+<div class="slide">
+<div class="slide-copy">
+<h2>Slider One</h2>
+<p>Free Yourself-Medidate for 30 Minutes</p>
+</div>
+<img src="1.jpg">
+</div>
+
+
+
+<div class="slide">
+<div class="slide-copy">
+<h2>Slider Two</h2>
+<p>Soulfoul-Path ,self care and healing path for self care </p>
+</div>
+<img src="2.jpg">
+</div>
+
+
+
+
+
+
+<div class="slide">
+<div class="slide-copy">
+<h2>Slider Three</h2>
+<p>Rereshing Momemnts of Life</p>
+</div>
+<img src="4.jpg">
+
+</div>
+
+
+
+
+
+<div class="slide">
+<div class="slide-copy">
+<h2>Slider fourth</h2>
+<p>Want to a refreshing Bear</p>
+</div>
+<img src="5.jpg">
+
+</div>
+</div>
+
+<img src="arrow-right.png" alt="next" id="next">
+</div>
+
+
+
+
+
+</body>
+
+
+</html>
